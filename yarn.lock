@@ -283,6 +283,11 @@
   resolved "https://registry.nlark.com/@types/scheduler/download/@types/scheduler-0.16.1.tgz?cache=0&sync_timestamp=1621242658440&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Fscheduler%2Fdownload%2F%40types%2Fscheduler-0.16.1.tgz#18845205e86ff0038517aab7a18a62a6b9f71275"
   integrity sha1-GIRSBehv8AOFF6q3oYpiprn3EnU=
 
+"@types/scrollreveal@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.nlark.com/@types/scrollreveal/download/@types/scrollreveal-0.0.6.tgz#e2e6a5e48dce3aa3d5c0bdf13280a7406e79c833"
+  integrity sha1-4ual5I3OOqPVwL3xMoCnQG55yDM=
+
 "@types/styled-components@^5.1.10":
   version "5.1.10"
   resolved "https://registry.nlark.com/@types/styled-components/download/@types/styled-components-5.1.10.tgz#b509da9d62be8a02cefd88ec6b820f417429a503"
