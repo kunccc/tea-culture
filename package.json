@@ -9,6 +9,7 @@
     "@types/styled-components": "^5.1.10",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
+    "scrollreveal": "^4.0.9",
     "styled-components": "^5.3.0"
   },
   "devDependencies": {
