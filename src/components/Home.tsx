@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Tea from './Tea';
 
@@ -7,8 +7,13 @@ const HomeWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   z-index: 10;
+  opacity: 1;
+  transition: all .8s .5s;
   &.hide {
-    animation: hideHome 1.5s both;
+    z-index: -1;
+    opacity: 0;
+    transform: translateY(-30px);
+    transition: all 1s .5s;
     .tea {
       animation: hideTea 1.2s both;
     }
@@ -28,6 +33,10 @@ const HomeWrapper = styled.div`
     font-size: 18px;
     transform: translateX(-10px);
     cursor: pointer;
+    transition: all .3s;
+    &:hover {
+      opacity: .7;
+    }
   }
   @keyframes hideButton {
     0% {
@@ -39,16 +48,13 @@ const HomeWrapper = styled.div`
     }
   }
   @keyframes hideTea {
-    0% {
-      opacity: 1;
-    }
-    40% {
+    32% {
       z-index: 10;
       transform: translateY(0);
     }
     60% {
       opacity: 1;
-      transform: translateY(15px);
+      transform: translateY(18px);
     }
     100% {
       opacity: 0;
@@ -56,23 +62,22 @@ const HomeWrapper = styled.div`
       transform: translateY(-100px);
     }
   }
-  @keyframes hideHome {
-    100% {
-      z-index: -1;
-    }
-  }
 `;
 
 interface Props {
   isStart: boolean;
-  start: () => void
+  setStart: (key: boolean) => void
 }
 
 const Home: React.FC<Props> = props => {
+  const back = () => {
+    props.setStart(true);
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  };
   return (
     <HomeWrapper className={props.isStart ? 'hide' : ''}>
       <Tea/>
-      <button onClick={() => props.start()}>start</button>
+      <button onClick={back}>start</button>
     </HomeWrapper>
   );
 };
