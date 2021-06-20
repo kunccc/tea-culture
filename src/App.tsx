@@ -13,6 +13,7 @@ const AppWrapper = styled.div`
   align-items: center;
   position: relative;
   min-height: 100vh;
+  font-size: 17px;
   &.hide {
     max-height: 100vh;
     overflow: hidden;
