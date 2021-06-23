@@ -8,7 +8,8 @@ const BackWrapper = styled.div`
   opacity: 0;
   z-index: -1;
   cursor: pointer;
-  transform: scale(1.8);
+  color: #fff;
+  transform: scale(1.6);
   transition: all .5s;
   &.visible {
     transition: all .4s 1.5s;
@@ -30,7 +31,7 @@ const Back: React.FC<Props> = props => {
   return (
     <BackWrapper className={props.isStart ? 'visible' : ''} onClick={back}>
       <svg className="icon">
-        <use xlinkHref="#icon-back"/>
+        <use xlinkHref="#icon-left"/>
       </svg>
     </BackWrapper>
   );

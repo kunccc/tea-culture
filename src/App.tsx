@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import styled from 'styled-components';
 import Home from './components/Home';
 import Main from './components/Main';
@@ -12,7 +12,6 @@ const AppWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   position: relative;
-  min-height: 100vh;
   font-size: 17px;
   &.hide {
     max-height: 100vh;
@@ -22,6 +21,9 @@ const AppWrapper = styled.div`
 
 const App: React.FC = () => {
   const [isStart, setStart] = useState(false);
+  useEffect(() => {
+    document.body.addEventListener('wheel', e => e.preventDefault(), {passive: false});
+  }, []);
   return (
     <AppWrapper className={isStart ? '' : 'hide'}>
       <Home isStart={isStart} setStart={setStart}/>

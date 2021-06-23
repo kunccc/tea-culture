@@ -1,14 +1,47 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styled from 'styled-components';
+import ScrollReveal from 'scrollreveal';
 
 const Page2Wrapper = styled.div`
-
+  img {
+    width: 60px;
+    opacity: 0;
+    &.knife {
+      width: 58px;
+      animation: arise 1s ease both;
+    }
+    &.hand {
+      animation: arise 1s .5s ease both;
+      width: 48px;
+    }
+    &.car {
+      animation: arise 1s 1s ease both;
+    }
+  }
+  @keyframes arise {
+    from {
+      transform: translateY(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 `;
 
-const Page2: React.FC = () => {
+interface Props {
+  setDownVisible: (key: boolean) => void
+}
+
+const Page2: React.FC<Props> = props => {
   return (
     <Page2Wrapper className="page">
-      采摘方法有：手摘法、刀割法、机采法。传统的手摘法适合用于高档茶的采摘。在长期实践中的“虎口对芯”采摘法，是将拇指和食指分开，从芽梢顶端中心插下，稍加扭折向上一提，将芽梢采下。可避免捏在手中的芽梢受热和压伤并且才下的鲜叶均匀度较一致。
+      <p className={`xxx`}>
+        通常，采摘方法有：手摘法、刀割法、 机采法。
+      </p>
+      <p>
+        茶树属四季常青而隔年交替落叶的植物，因此，合理做好鲜叶的采摘与留养，是持续长久确保茶树生长茂盛和优质丰产丰收的关键。“掠夺式”的采摘或过盛的留叶均不利于茶叶生产与发展。
+      </p>
     </Page2Wrapper>
   );
 };

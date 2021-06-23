@@ -9,6 +9,8 @@ const HomeWrapper = styled.div`
   z-index: 10;
   opacity: 1;
   transition: all .8s .5s;
+  position: absolute;
+  top: 0;
   &.hide {
     z-index: -1;
     opacity: 0;
