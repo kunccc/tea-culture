@@ -5,7 +5,7 @@ const Page1Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 200px;
+  padding: 100px 20vw !important;
   .man {
     .people {
       width: 200px;
@@ -16,7 +16,7 @@ const Page1Wrapper = styled.div`
       }
       @keyframes show {
         from {
-          transform: translateX(-110px);
+          transform: translateX(-100px);
         }
         to {
           opacity: 1;
@@ -55,11 +55,15 @@ const Page1Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     opacity: 0;
-    cursor: pointer;
-    transition: opacity 1s 2s;
+    transform: translateX(100px);
+    transition: all 1s 2s;
     &.visible {
-      cursor: default;
+      transform: translateX(0);
+      cursor: pointer;
       opacity: 1;
+    }
+    &.off {
+      cursor: default;
     }
     .lid {
       width: 76.8px;
@@ -72,14 +76,6 @@ const Page1Wrapper = styled.div`
     }
     .potBody {
       width: 172.8px;
-    }
-  }
-  .book {
-    width: 91px;
-    height: 109px;
-    opacity: 0;
-    &.visible {
-      animation: show2 .8s 1s both;
     }
   }
   @keyframes arise {
@@ -111,7 +107,6 @@ const Page1: React.FC<Props> = props => {
   const [isTextVisible, setTextVisible] = useState(false);
   const [isPotVisible, setPotVisible] = useState(false);
   const [isOff, setOff] = useState(false);
-  const [isBookVisible, setBookVisible] = useState(false);
   const showLeaf = () => {
     setLeafVisible(true);
     setTextVisible(true);
@@ -119,8 +114,7 @@ const Page1: React.FC<Props> = props => {
   };
   const off = () => {
     setOff(true);
-    setBookVisible(true);
-    setTimeout(() => props.setDownVisible(true), 2000);
+    setTimeout(() => props.setDownVisible(true), 800);
   };
   return (
     <Page1Wrapper className="page">
@@ -137,11 +131,10 @@ const Page1: React.FC<Props> = props => {
           直到现在，汉族还有民以茶代礼的风俗，其中的潮州工夫茶作为中国茶文化的古典流派，集中了中国茶道文化的精粹，作为中国茶道的代表入选国家级非物质文化遗产。
         </p>
       </div>
-      <div className={`pot ${isPotVisible ? 'visible' : ''}`} onClick={off}>
+      <div className={`pot ${isPotVisible ? 'visible' : ''} ${isOff ? 'off' : ''}`} onClick={off}>
         <img src="/src/images/lid.png" alt="" className={`lid ${isOff ? 'off' : ''}`}/>
         <img src="/src/images/pot.png" alt="" className="potBody"/>
       </div>
-      <img src="/src/images/book.png" alt="" className={`book ${isBookVisible ? 'visible' : ''}`}/>
     </Page1Wrapper>
   );
 };

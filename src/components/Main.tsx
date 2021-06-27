@@ -3,10 +3,8 @@ import styled from 'styled-components';
 import Page1 from '../pages/Page1';
 import Page3 from '../pages/Page3';
 import Page4 from '../pages/Page4';
-import Page5 from '../pages/Page5';
 import Page2 from '../pages/Page2';
 import Next from './Next';
-import {createId} from '../createId';
 
 const MainWrapper = styled.div`
   opacity: 0;
@@ -40,7 +38,7 @@ const Main: React.FC<Props> = props => {
   const [currentPage, setCurrentPage] = useState(1);
   const next = () => {
     const height = document.documentElement.clientHeight;
-    main.current!.scrollTo({top: height * createId(), behavior: 'smooth'});
+    main.current!.scrollTo({top: height * currentPage, behavior: 'smooth'});
     setDownVisible(false);
     setCurrentPage(n => n + 1);
   };
@@ -50,7 +48,6 @@ const Main: React.FC<Props> = props => {
       <Page2 setDownVisible={setDownVisible} currentPage={currentPage}/>
       <Page3 setDownVisible={setDownVisible} currentPage={currentPage}/>
       <Page4 setDownVisible={setDownVisible} currentPage={currentPage}/>
-      <Page5 setDownVisible={setDownVisible} currentPage={currentPage}/>
       <Next isDownVisible={isDownVisible} next={next}/>
     </MainWrapper>
   );

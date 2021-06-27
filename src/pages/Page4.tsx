@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 
 const Page4Wrapper = styled.div`
+  text-align: center;
   .img {
     display: flex;
     flex-direction: column;
@@ -19,14 +20,17 @@ const Page4Wrapper = styled.div`
       opacity: 0;
       &.visible {
         cursor: pointer;
-        animation: arise .8s .5s ease both;
+        animation: arise .8s .8s ease both;
+      }
+      &.heartVisible {
+        cursor: default;
       }
     }
   }
   .text {
     opacity: 0;
     &.visible {
-      animation: arise .8s 1.5s ease both;
+      animation: arise .8s 1s ease both;
     }
   }
   @keyframes arise {
@@ -58,7 +62,6 @@ const Page4: React.FC<Props> = props => {
   const [heartVisible, setHeartVisible] = useState(false);
   const onCLickHandler = () => {
     setHeartVisible(true);
-    setTimeout(() => props.setDownVisible(true), 2500);
   };
   return (
     <Page4Wrapper className="page">
@@ -66,7 +69,8 @@ const Page4: React.FC<Props> = props => {
       </p>
       <div className="img" onClick={onCLickHandler}>
         <img src="/src/images/heart.png" alt="" className={`heart ${heartVisible ? 'visible' : ''}`}/>
-        <img src="/src/images/marry.png" alt="" className={`marry ${props.currentPage === 4 ? 'visible' : ''}`}/>
+        <img src="/src/images/marry.png" alt=""
+             className={`marry ${props.currentPage === 4 ? 'visible' : ''} ${heartVisible ? 'heartVisible' : ''}`}/>
       </div>
       <p className={`text ${heartVisible ? 'visible' : ''}`}>除此之外以茶待客、以茶会友、以茶联谊也是古代沿袭下来的饮茶习俗。</p>
     </Page4Wrapper>

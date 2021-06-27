@@ -3,56 +3,59 @@ import styled from 'styled-components';
 
 const Page2Wrapper = styled.div`
   position: relative;
+  text-align: center;
   .text1 {
-    margin: 40px 0 50px;
+    margin: 40px 0 60px;
   }
   .text2 {
     opacity: 0;
-    margin: 70px 0 50px;
+    margin: 90px 0 60px;
     &.visible {
-      animation: arise 1s 2.5s ease both;
+      animation: arise 1s 2.4s ease both;
     }
   }
   img {
     width: 60px;
     opacity: 0;
-    margin-right: 40px;
     &.knife {
       width: 87px;
+      margin-right: 40px;
       &.visible {
-        animation: arise 1s .5s ease both;
+        animation: arise 1s .8s ease both;
       }
     }
     &.hand {
       width: 63px;
+      margin-right: 40px;
       &.visible {
-        animation: arise 1s 1s ease both;
+        animation: arise 1s 1.1s ease both;
       }
     }
     &.car {
       width: 75px;
       &.visible {
-        animation: arise 1s 1.5s ease both;
+        animation: arise 1s 1.4s ease both;
       }
     }
     &.tree {
       width: 75px;
       &.visible {
         cursor: pointer;
-        animation: arise 1s 3.5s ease both;
+        animation: arise 1s 3.4s ease both;
       }
     }
     &.ban {
       width: 200px;
       position: absolute;
-      top: 395px;
-      left: 38px;
+      top: 433px;
+      left: 50%;
+      transform: translateX(-50%);
       transition: all .4s ease-out;
       z-index: -1;
       &.visible {
         z-index: 1;
         opacity: 1;
-        transform: scale(.5);
+        transform: translateX(-50%) scale(.55);
       }
     }
   }
@@ -76,12 +79,12 @@ const Page2: React.FC<Props> = props => {
   const [isBanVisible, setBanVisible] = useState(false);
   const onClickHandler = () => {
     setBanVisible(true);
-    setTimeout(() => props.setDownVisible(true), 1000);
+    setTimeout(() => props.setDownVisible(true), 800);
   };
   return (
     <Page2Wrapper className="page">
       <p className={`text1`}>
-        通常，采摘方法有：刀割法、手摘法、 机采法。
+        通常，茶叶的采摘方法有：刀割法、手摘法、 机采法。
       </p>
       <img src="/src/images/knife.png" alt="" className={`knife ${props.currentPage === 2 ? 'visible' : ''}`}/>
       <img src="/src/images/hand.png" alt="" className={`hand ${props.currentPage === 2 ? 'visible' : ''}`}/>

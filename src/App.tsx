@@ -1,8 +1,7 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 import Home from './components/Home';
 import Main from './components/Main';
-import Back from './components/Back';
 
 const AppWrapper = styled.div`
   background: #486e88;
@@ -21,14 +20,17 @@ const AppWrapper = styled.div`
 
 const App: React.FC = () => {
   const [isStart, setStart] = useState(false);
+  const [codeNum] = useState([37, 38, 39, 40]);
   useEffect(() => {
     document.body.addEventListener('wheel', e => e.preventDefault(), {passive: false});
+    document.body.addEventListener('keydown', e => {
+      if (codeNum.indexOf(e.keyCode) >= 0) e.preventDefault();
+    }, {passive: false});
   }, []);
   return (
     <AppWrapper className={isStart ? '' : 'hide'}>
       <Home isStart={isStart} setStart={setStart}/>
       <Main isStart={isStart}/>
-      <Back isStart={isStart} setStart={setStart}/>
     </AppWrapper>
   );
 };

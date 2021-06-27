@@ -6,40 +6,36 @@ const Page3Wrapper = styled.div`
   justify-content: space-around;
   .wrapper {
     padding: 100px 0;
-    &:last-child {
-      transform: translateY(22px);
-    }
+    text-align: center;
     .bowl {
       opacity: 0;
+      transform: translate(-28px, 70px) scale(1.15);
+      transition: all .8s 4.1s ease;
       &.visible {
-        animation: arise .8s 3s ease both;
+        opacity: 1;
+        transform: translate(-28px, 20px) scale(1.15);
       }
     }
     p {
-      margin-bottom: 100px;
+      margin-bottom: 90px;
       &.text2 {
+        margin-bottom: 100px;
         opacity: 0;
         &.visible {
-          animation: arise .8s 2.5s ease both;
+          animation: arise .8s 3.1s ease both;
         }
       }
       &.number {
         font-size: 40px;
         margin: 0;
         opacity: 0;
-        transform: translateX(12px) scale(1.2);
-        transition: all .8s 1.5s ease;
+        transform: scale(1.2);
+        transition: all .8s 2.1s ease;
         &.visible {
-          transform: translateX(12px) scale(1);
+          transform: scale(1);
           opacity: 1;
         }
       }
-    }
-    .item {
-      transform: translate(60px, -30px);
-    }
-    .bowl {
-      transform: translate(73px, 10px);
     }
     img {
       width: 70px;
@@ -47,14 +43,14 @@ const Page3Wrapper = styled.div`
         opacity: 0;
         margin-right: 50px;
         &.visible {
-          animation: arise .8s .6s ease both;
+          animation: arise .8s .8s ease both;
         }
       }
       &.water {
         opacity: 0;
-        width: 65px;
+        width: 62px;
         &.visible {
-          animation: arise .8s .9s ease both;
+          animation: arise .8s 1.1s ease both;
         }
       }
       &.bowl_cap {
@@ -96,13 +92,13 @@ const Page3: React.FC<Props> = props => {
   const [bowlClose, setBowlClose] = useState(false);
   const onClickHandler = () => {
     setBowlClose(true);
-    setTimeout(() => props.setDownVisible(true), 1000);
+    setTimeout(() => props.setDownVisible(true), 800);
   };
   return (
     <Page3Wrapper className="page">
       <div className="wrapper">
         <p className="text1">
-          红茶是全发酵茶，冲泡红茶最好用刚煮沸的水，<br/>投茶的茶水比一般为1:50（即一克红茶对应50ml水）冲泡时间以3~5分钟为佳。
+          红茶是全发酵茶，冲泡红茶最好用刚煮沸的水，投茶的茶水比一般为 1:50。
         </p>
         <div className="item">
           <img src="/src/images/leaf2.png" alt="" className={`leaf2 ${props.currentPage === 3 ? 'visible' : ''}`}/>
