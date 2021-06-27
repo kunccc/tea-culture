@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 
 const Page1Wrapper = styled.div`
@@ -58,6 +58,7 @@ const Page1Wrapper = styled.div`
     cursor: pointer;
     transition: opacity 1s 2s;
     &.visible {
+      cursor: default;
       opacity: 1;
     }
     .lid {

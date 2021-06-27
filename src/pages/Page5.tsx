@@ -5,7 +5,8 @@ const Page5Wrapper = styled.div`
 `;
 
 interface Props {
-  setDownVisible: (key: boolean) => void
+  setDownVisible: (key: boolean) => void;
+  currentPage: number
 }
 
 const Page5: React.FC<Props> = props => {

@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useRef, useState} from 'react';
 import styled from 'styled-components';
 import Page1 from '../pages/Page1';
 import Page3 from '../pages/Page3';
@@ -37,26 +37,20 @@ interface Props {
 const Main: React.FC<Props> = props => {
   const main = useRef<HTMLDivElement>(null);
   const [isDownVisible, setDownVisible] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
   const next = () => {
     const height = document.documentElement.clientHeight;
     main.current!.scrollTo({top: height * createId(), behavior: 'smooth'});
     setDownVisible(false);
+    setCurrentPage(n => n + 1);
   };
-  useEffect(() => {
-    if (main.current)
-      main.current.addEventListener('scroll', e => {
-        console.log('fuck');
-        e.preventDefault();
-      });
-  });
-  console.log('fuck');
   return (
     <MainWrapper className={props.isStart ? 'visible' : ''} ref={main} id="xxx">
       <Page1 setDownVisible={setDownVisible}/>
-      <Page2 setDownVisible={setDownVisible}/>
-      <Page3 setDownVisible={setDownVisible}/>
-      <Page4 setDownVisible={setDownVisible}/>
-      <Page5 setDownVisible={setDownVisible}/>
+      <Page2 setDownVisible={setDownVisible} currentPage={currentPage}/>
+      <Page3 setDownVisible={setDownVisible} currentPage={currentPage}/>
+      <Page4 setDownVisible={setDownVisible} currentPage={currentPage}/>
+      <Page5 setDownVisible={setDownVisible} currentPage={currentPage}/>
       <Next isDownVisible={isDownVisible} next={next}/>
     </MainWrapper>
   );
