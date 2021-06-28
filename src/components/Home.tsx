@@ -72,14 +72,10 @@ interface Props {
 }
 
 const Home: React.FC<Props> = props => {
-  const back = () => {
-    props.setStart(true);
-    window.scrollTo({top: 0, behavior: 'smooth'});
-  };
   return (
     <HomeWrapper className={props.isStart ? 'hide' : ''}>
       <Tea/>
-      <button onClick={back}>start</button>
+      <button onClick={() => props.setStart(true)}>start</button>
     </HomeWrapper>
   );
 };

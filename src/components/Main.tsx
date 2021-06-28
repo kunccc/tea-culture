@@ -43,7 +43,7 @@ const Main: React.FC<Props> = props => {
     setCurrentPage(n => n + 1);
   };
   return (
-    <MainWrapper className={props.isStart ? 'visible' : ''} ref={main} id="xxx">
+    <MainWrapper className={props.isStart ? 'visible' : ''} ref={main}>
       <Page1 setDownVisible={setDownVisible}/>
       <Page2 setDownVisible={setDownVisible} currentPage={currentPage}/>
       <Page3 setDownVisible={setDownVisible} currentPage={currentPage}/>
