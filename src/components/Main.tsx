@@ -1,10 +1,11 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import styled from 'styled-components';
 import Page1 from '../pages/Page1';
 import Page3 from '../pages/Page3';
 import Page4 from '../pages/Page4';
 import Page2 from '../pages/Page2';
 import Next from './Next';
+import Back from './Back';
 
 const MainWrapper = styled.div`
   opacity: 0;
@@ -34,21 +35,39 @@ interface Props {
 
 const Main: React.FC<Props> = props => {
   const main = useRef<HTMLDivElement>(null);
-  const [isDownVisible, setDownVisible] = useState(false);
+  const [isNextVisible, setNextVisible] = useState(false);
+  const [isBackVisible, setBackVisible] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const next = () => {
-    const height = document.documentElement.clientHeight;
-    main.current!.scrollTo({top: height * currentPage, behavior: 'smooth'});
-    setDownVisible(false);
-    setCurrentPage(n => n + 1);
+  const [isPage1Visited, setPage1Visited] = useState(false);
+  const [isPage2Visited, setPage2Visited] = useState(false);
+  const [isPage3Visited, setPage3Visited] = useState(false);
+  const [isPage4Visited, setPage4Visited] = useState(false);
+  const pageMap = [isPage1Visited, isPage2Visited, isPage3Visited, isPage4Visited];
+  const setPageMap = [setPage1Visited, setPage2Visited, setPage3Visited, setPage4Visited];
+  const height = document.documentElement.clientHeight;
+  const back = () => {
+    if (currentPage === 2) setBackVisible(false);
+    main.current!.scrollTo({top: height * (currentPage - 2), behavior: 'smooth'});
+    setCurrentPage(n => n - 1);
+    setNextVisible(true);
   };
+  const next = () => {
+    main.current!.scrollTo({top: height * currentPage, behavior: 'smooth'});
+    if (!pageMap[currentPage] || currentPage === 3) setNextVisible(false);
+    setCurrentPage(n => n + 1);
+    setBackVisible(true);
+  };
+  useEffect(() => {
+    setPageMap[currentPage - 1](true);
+  }, [currentPage]);
   return (
     <MainWrapper className={props.isStart ? 'visible' : ''} ref={main}>
-      <Page1 setDownVisible={setDownVisible}/>
-      <Page2 setDownVisible={setDownVisible} currentPage={currentPage}/>
-      <Page3 setDownVisible={setDownVisible} currentPage={currentPage}/>
-      <Page4 setDownVisible={setDownVisible} currentPage={currentPage}/>
-      <Next isDownVisible={isDownVisible} next={next}/>
+      <Page1 setDownVisible={setNextVisible}/>
+      <Page2 setDownVisible={setNextVisible} isPage2Visited={isPage2Visited}/>
+      <Page3 setDownVisible={setNextVisible} isPage3Visited={isPage3Visited}/>
+      <Page4 setDownVisible={setNextVisible} isPage4Visited={isPage4Visited}/>
+      <Back isBackVisible={isBackVisible} back={back}/>
+      <Next isNextVisible={isNextVisible} next={next}/>
     </MainWrapper>
   );
 };

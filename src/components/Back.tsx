@@ -3,15 +3,15 @@ import styled from 'styled-components';
 
 const NextWrapper = styled.div`
   position: fixed;
-  bottom: 20px;
+  top: 20px;
   left: 50%;
-  transform: translate(-50%, 20px) scale(1.6);
+  transform: translate(-50%, -20px) scale(1.6) rotate(180deg);
   opacity: 0;
   transition: all .4s;
   z-index: -1;
   &.visible {
     opacity: .4;
-    transform: translateX(-50%) scale(1.6);
+    transform: translateX(-50%) scale(1.6) rotate(180deg);
     cursor: pointer;
     z-index: 2;
     &:hover {
@@ -21,13 +21,13 @@ const NextWrapper = styled.div`
 `;
 
 interface Props {
-  isNextVisible: boolean;
-  next: () => void
+  isBackVisible: boolean;
+  back: () => void
 }
 
-const Next: React.FC<Props> = props => {
+const Back: React.FC<Props> = props => {
   return (
-    <NextWrapper className={props.isNextVisible ? 'visible' : ''} onClick={() => props.next()}>
+    <NextWrapper className={props.isBackVisible ? 'visible' : ''} onClick={() => props.back()}>
       <svg className="icon">
         <use xlinkHref="#icon-down"/>
       </svg>
@@ -35,4 +35,4 @@ const Next: React.FC<Props> = props => {
   );
 };
 
-export default Next;
+export default Back;

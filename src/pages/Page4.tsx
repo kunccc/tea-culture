@@ -20,14 +20,20 @@ const Page4Wrapper = styled.div`
       opacity: 0;
       &.visible {
         cursor: pointer;
-        animation: arise .8s .8s ease both;
+        animation: arise .8s 1.8s ease both;
       }
       &.heartVisible {
         cursor: default;
       }
     }
   }
-  .text {
+  .text1 {
+    opacity: 0;
+    &.visible {
+      animation: arise .8s .8s ease both;
+    }
+  }
+  .text2 {
     opacity: 0;
     &.visible {
       animation: arise .8s 1s ease both;
@@ -55,7 +61,7 @@ const Page4Wrapper = styled.div`
 
 interface Props {
   setDownVisible: (key: boolean) => void;
-  currentPage: number
+  isPage4Visited: boolean;
 }
 
 const Page4: React.FC<Props> = props => {
@@ -65,14 +71,15 @@ const Page4: React.FC<Props> = props => {
   };
   return (
     <Page4Wrapper className="page">
-      <p>在婚礼中，茶经常被作为礼仪的一部分用于迎亲或结婚仪式中。有新郎、新娘的“交杯茶”、“和合茶”，或向父母尊长敬献的“谢恩茶”、“认亲茶”等仪式。<br/>总之，从古到今，我国的许多地方，在缔婚的每一个过程中，往往都离不开茶来作礼仪。
-      </p>
+      <p>在婚礼中，茶经常被作为礼仪的一部分用于迎亲或结婚仪式中。有新郎、新娘的“交杯茶”、“和合茶”，或向父母尊长敬献的“谢恩茶”、“认亲茶”等仪式。</p>
+      <p
+        className={`text1 ${props.isPage4Visited ? 'visible' : ''}`}>总之，从古到今，我国的许多地方，在缔婚的每一个过程中，往往都离不开茶来作礼仪。</p>
       <div className="img" onClick={onCLickHandler}>
         <img src="/src/images/heart.png" alt="" className={`heart ${heartVisible ? 'visible' : ''}`}/>
         <img src="/src/images/marry.png" alt=""
-             className={`marry ${props.currentPage === 4 ? 'visible' : ''} ${heartVisible ? 'heartVisible' : ''}`}/>
+             className={`marry ${props.isPage4Visited ? 'visible' : ''} ${heartVisible ? 'heartVisible' : ''}`}/>
       </div>
-      <p className={`text ${heartVisible ? 'visible' : ''}`}>除此之外以茶待客、以茶会友、以茶联谊也是古代沿袭下来的饮茶习俗。</p>
+      <p className={`text2 ${heartVisible ? 'visible' : ''}`}>除此之外以茶待客、以茶会友、以茶联谊也是古代沿袭下来的饮茶习俗。</p>
     </Page4Wrapper>
   );
 };

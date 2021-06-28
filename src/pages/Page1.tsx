@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
+import Click from '../components/Click';
 
 const Page1Wrapper = styled.div`
   display: flex;
@@ -7,6 +8,7 @@ const Page1Wrapper = styled.div`
   align-items: center;
   padding: 100px 20vw !important;
   .man {
+    position: relative;
     .people {
       width: 200px;
       opacity: 0;
@@ -23,6 +25,12 @@ const Page1Wrapper = styled.div`
           transform: translateX(0);
         }
       }
+    }
+    .click {
+      position: absolute;
+      top: 190px;
+      left: 170px;
+      opacity: 0;
     }
   }
   .leaf1 {
@@ -99,7 +107,7 @@ const Page1Wrapper = styled.div`
 `;
 
 interface Props {
-  setDownVisible: (key: boolean) => void
+  setDownVisible: (key: boolean) => void;
 }
 
 const Page1: React.FC<Props> = props => {
@@ -122,6 +130,7 @@ const Page1: React.FC<Props> = props => {
         <img src="/src/images/people.png" alt="" className={`people ${isLeafVisible ? '' : 'inVisible'}`}
              onClick={showLeaf}/>
         <img src="/src/images/leaf1.png" alt="" className={`leaf1 ${isLeafVisible ? 'visible' : ''}`}/>
+        <Click/>
       </div>
       <div className="text">
         <p className="text1">
