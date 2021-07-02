@@ -22,7 +22,7 @@ const Click = React.forwardRef((props, ref) => {
   const [mark, setMark] = useState(false);
   useImperativeHandle(ref, () => {return {isDone, setDone, mark, setMark};});
   return (
-    <ClickImg src="../images/click.png" className={`click ${isDone ? 'done' : ''}`}/>
+    <ClickImg src="click.png" className={`click ${isDone ? 'done' : ''}`}/>
   );
 });
 

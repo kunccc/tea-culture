@@ -160,26 +160,26 @@ const Page4: React.FC<Props> = props => {
         <div className="top">
           <p className={`text1 ${props.isPage4Visited ? 'visible' : ''}`}>上投法即先投水后投茶，多用于比较细嫩的绿茶。</p>
           <div className="step">
-            <img src="../images/cup.png" alt=""
+            <img src="cup.png" alt=""
                  className={`cup ${props.isPage4Visited ? 'visible' : ''} ${isStep1Visible ? 'done' : ''}`}
                  onClick={onClickHandler1}/>
-            <img src="../images/add.png" alt="" className={`add1 ${isStep1Visible ? 'visible' : ''}`}/>
-            <img src="../images/water.png" alt="" className={`water ${isStep1Visible ? 'visible' : ''}`}/>
-            <img src="../images/add.png" alt="" className={`add2 ${isStep1Visible ? 'visible' : ''}`}/>
-            <img src="../images/leaf2.png" alt="" className={`leaf ${isStep1Visible ? 'visible' : ''}`}/>
+            <img src="add.png" alt="" className={`add1 ${isStep1Visible ? 'visible' : ''}`}/>
+            <img src="water.png" alt="" className={`water ${isStep1Visible ? 'visible' : ''}`}/>
+            <img src="add.png" alt="" className={`add2 ${isStep1Visible ? 'visible' : ''}`}/>
+            <img src="leaf2.png" alt="" className={`leaf ${isStep1Visible ? 'visible' : ''}`}/>
             <Click ref={click1Ref}/>
           </div>
         </div>
         <div className="bottom">
           <p className={`text2 ${isStep1Visible ? 'visible' : ''}`}>下投法即先投茶后投水，多用于质量一般的绿茶。</p>
           <div className="step">
-            <img src="../images/cup.png" alt=""
+            <img src="cup.png" alt=""
                  className={`cup ${isStep1Visible ? 'visible' : ''} ${isStep2Visible ? 'done' : ''}`}
                  onClick={onClickHandler2}/>
-            <img src="../images/add.png" alt="" className={`add1 ${isStep2Visible ? 'visible' : ''}`}/>
-            <img src="../images/leaf2.png" alt="" className={`leaf ${isStep2Visible ? 'visible' : ''}`}/>
-            <img src="../images/add.png" alt="" className={`add2 ${isStep2Visible ? 'visible' : ''}`}/>
-            <img src="../images/water.png" alt="" className={`water ${isStep2Visible ? 'visible' : ''}`}/>
+            <img src="add.png" alt="" className={`add1 ${isStep2Visible ? 'visible' : ''}`}/>
+            <img src="leaf2.png" alt="" className={`leaf ${isStep2Visible ? 'visible' : ''}`}/>
+            <img src="add.png" alt="" className={`add2 ${isStep2Visible ? 'visible' : ''}`}/>
+            <img src="water.png" alt="" className={`water ${isStep2Visible ? 'visible' : ''}`}/>
             <Click ref={click2Ref}/>
           </div>
         </div>

@@ -106,20 +106,20 @@ const Page2: React.FC<Props> = props => {
       <p className={`text1`}>
         通常，茶叶的采摘方法有：刀割法、手摘法、 机采法。
       </p>
-      <img src="../images/knife.png" alt=""
+      <img src="knife.png" alt=""
            className={`knife ${props.isPage2Visited ? 'visible' : ''}`}/>
-      <img src="../images/hand.png" alt=""
+      <img src="hand.png" alt=""
            className={`hand ${props.isPage2Visited ? 'visible' : ''}`}/>
-      <img src="../images/car.png" alt=""
+      <img src="car.png" alt=""
            className={`car ${props.isPage2Visited ? 'visible' : ''}`}/>
       <p className={`text2 ${props.isPage2Visited ? 'visible' : ''}`}>
         茶树属四季常青而隔年交替落叶的植物，因此，合理做好鲜叶的采摘与留养，是持续长久确保茶树生长茂盛和优质丰产丰收的关键。<br/>“掠夺式”的采摘或过盛的留叶均不利于茶叶生产与发展。
       </p>
       <div className="wrapper">
-        <img src="../images/tree.png" alt=""
+        <img src="tree.png" alt=""
              className={`tree ${props.isPage2Visited ? 'visible' : ''}`}
              onClick={onClickHandler}/>
-        <img src="../images/ban.png" alt="" className={`ban ${isBanVisible ? 'visible' : ''}`}/>
+        <img src="ban.png" alt="" className={`ban ${isBanVisible ? 'visible' : ''}`}/>
         <Click ref={clickRef}/>
       </div>
     </Page2Wrapper>

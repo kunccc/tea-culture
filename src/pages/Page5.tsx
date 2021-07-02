@@ -118,9 +118,9 @@ const Page5: React.FC<Props> = props => {
           红茶是全发酵茶，冲泡红茶最好用刚煮沸的水，投茶的茶水比一般为 1:50。
         </p>
         <div className="item">
-          <img src="../images/leaf2.png" alt=""
+          <img src="leaf2.png" alt=""
                className={`leaf2 ${props.isPage5Visited ? 'visible' : ''}`}/>
-          <img src="../images/water.png" alt=""
+          <img src="water.png" alt=""
                className={`water ${props.isPage5Visited ? 'visible' : ''}`}/>
           <p
             className={`number ${props.isPage5Visited ? 'visible' : ''}`}>1&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;50</p>
@@ -132,8 +132,8 @@ const Page5: React.FC<Props> = props => {
         </p>
         <div className={`bowl ${props.isPage5Visited ? 'visible' : ''}`}
              onClick={onClickHandler}>
-          <img src="../images/bowl-cap.png" alt="" className={`bowl_cap ${bowlClose ? 'visible' : ''}`}/>
-          <img src="../images/bowl-body.png" alt="" className={`bowl_body ${bowlClose ? 'visible' : ''}`}/>
+          <img src="bowl-cap.png" alt="" className={`bowl_cap ${bowlClose ? 'visible' : ''}`}/>
+          <img src="bowl-body.png" alt="" className={`bowl_body ${bowlClose ? 'visible' : ''}`}/>
           <Click ref={clickRef}/>
         </div>
       </div>
