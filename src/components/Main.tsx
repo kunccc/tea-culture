@@ -66,7 +66,7 @@ const Main: React.FC<Props> = props => {
   }, [currentPage]);
   return (
     <MainWrapper className={props.isStart ? 'visible' : ''} ref={main}>
-      <Page1 setDownVisible={setNextVisible}/>
+      <Page1 setDownVisible={setNextVisible} isPage1Visited={isPage1Visited}/>
       <Page2 setDownVisible={setNextVisible} isPage2Visited={isPage2Visited}/>
       <Page3 setDownVisible={setNextVisible} isPage3Visited={isPage3Visited}/>
       <Page4 setDownVisible={setNextVisible} isPage4Visited={isPage4Visited}/>

@@ -1,9 +1,11 @@
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import styled from 'styled-components';
+import Click from '../components/Click';
 
 const Page4Wrapper = styled.div`
   text-align: center;
   .img {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -12,7 +14,7 @@ const Page4Wrapper = styled.div`
       width: 50px;
       opacity: 0;
       &.visible {
-        animation: heartArise .8s ease both;
+        animation: heartArise .8s .8s ease both;
       }
     }
     .marry {
@@ -26,6 +28,11 @@ const Page4Wrapper = styled.div`
         cursor: default;
       }
     }
+    .click {
+      position: absolute;
+      bottom: -20px;
+      right: 410px;
+    }
   }
   .text1 {
     opacity: 0;
@@ -36,7 +43,7 @@ const Page4Wrapper = styled.div`
   .text2 {
     opacity: 0;
     &.visible {
-      animation: arise .8s 1s ease both;
+      animation: arise .8s 1.8s ease both;
     }
   }
   @keyframes arise {
@@ -65,10 +72,21 @@ interface Props {
 }
 
 const Page6: React.FC<Props> = props => {
+  const clickRef = useRef(null);
   const [heartVisible, setHeartVisible] = useState(false);
   const onCLickHandler = () => {
     setHeartVisible(true);
+    // @ts-ignore
+    clickRef.current.setDone(true);
+    // @ts-ignore
+    clickRef.current.setMark(true);
   };
+  useEffect(() => {
+    if (props.isPage6Visited) setTimeout(() => {
+      // @ts-ignore
+      if (!clickRef.current.mark) clickRef.current.setDone(false);
+    }, 2800);
+  }, [props.isPage6Visited]);
   return (
     <Page4Wrapper className="page">
       <p>在婚礼中，茶经常被作为礼仪的一部分用于迎亲或结婚仪式中。有新郎、新娘的“交杯茶”、“和合茶”，或向父母尊长敬献的“谢恩茶”、“认亲茶”等仪式。</p>
@@ -78,6 +96,7 @@ const Page6: React.FC<Props> = props => {
         <img src="/src/images/heart.png" alt="" className={`heart ${heartVisible ? 'visible' : ''}`}/>
         <img src="/src/images/marry.png" alt=""
              className={`marry ${props.isPage6Visited ? 'visible' : ''} ${heartVisible ? 'heartVisible' : ''}`}/>
+        <Click ref={clickRef}/>
       </div>
       <p className={`text2 ${heartVisible ? 'visible' : ''}`}>除此之外以茶待客、以茶会友、以茶联谊也是古代沿袭下来的饮茶习俗。</p>
     </Page4Wrapper>

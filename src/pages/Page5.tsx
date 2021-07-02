@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import styled from 'styled-components';
+import Click from '../components/Click';
 
 const Page3Wrapper = styled.div`
   display: flex;
@@ -14,6 +15,11 @@ const Page3Wrapper = styled.div`
       &.visible {
         opacity: 1;
         transform: translate(-28px, 20px) scale(1.15);
+      }
+      .click {
+        position: absolute;
+        top: 70px;
+        left: 380px;
       }
     }
     p {
@@ -55,7 +61,7 @@ const Page3Wrapper = styled.div`
       }
       &.bowl_cap {
         width: 64px;
-        transition: all .4s;
+        transition: all .4s .8s;
         cursor: pointer;
         &.visible {
           cursor: none;
@@ -89,11 +95,22 @@ interface Props {
 }
 
 const Page5: React.FC<Props> = props => {
+  const clickRef = useRef(null);
   const [bowlClose, setBowlClose] = useState(false);
   const onClickHandler = () => {
     setBowlClose(true);
-    setTimeout(() => props.setDownVisible(true), 800);
+    // @ts-ignore
+    clickRef.current.setDone(true);
+    // @ts-ignore
+    clickRef.current.setMark(true);
+    setTimeout(() => props.setDownVisible(true), 1600);
   };
+  useEffect(() => {
+    if (props.isPage5Visited) setTimeout(() => {
+      // @ts-ignore
+      if (!clickRef.current.mark) clickRef.current.setDone(false);
+    }, 4600);
+  }, [props.isPage5Visited]);
   return (
     <Page3Wrapper className="page">
       <div className="wrapper">
@@ -117,6 +134,7 @@ const Page5: React.FC<Props> = props => {
              onClick={onClickHandler}>
           <img src="/src/images/bowl-cap.png" alt="" className={`bowl_cap ${bowlClose ? 'visible' : ''}`}/>
           <img src="/src/images/bowl-body.png" alt="" className={`bowl_body ${bowlClose ? 'visible' : ''}`}/>
+          <Click ref={clickRef}/>
         </div>
       </div>
     </Page3Wrapper>

@@ -1,11 +1,12 @@
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import styled from 'styled-components';
+import Click from '../components/Click';
 
 const Page3Wrapper = styled.div`
   text-align: center;
   position: relative;
   .text1 {
-    margin-top: 110px;
+    margin-top: 100px;
   }
   .text2 {
     opacity: 0;
@@ -15,8 +16,7 @@ const Page3Wrapper = styled.div`
   }
   .text3 {
     font-size: 22px;
-    text-decoration: underline;
-    margin: 80px 0 40px;
+    margin: 90px 0 40px;
     opacity: 0;
     transition: opacity .4s 1.8s ease;
     z-index: -1;
@@ -27,8 +27,13 @@ const Page3Wrapper = styled.div`
     }
     &.done {
       cursor: default;
-      text-decoration: none;
     }
+  }
+  .click {
+    position: absolute;
+    top: 380px;
+    left: 830px;
+    z-index: 2;
   }
   .text4 {
     margin-bottom: 6px;
@@ -42,7 +47,7 @@ const Page3Wrapper = styled.div`
   .text5 {
     margin-top: 4px;
     opacity: 0;
-    transition: opacity .8s 1.3s ease;
+    transition: opacity .8s 2.1s ease;
     &.visible {
       opacity: 1;
     }
@@ -65,7 +70,7 @@ const Page3Wrapper = styled.div`
     width: 520px;
     height: 100px;
     background: #486e88;
-    transition: all 2s ease;
+    transition: all 2s .8s ease;
     &.visible {
       transform: translate(20vw);
     }
@@ -87,18 +92,30 @@ interface Props {
 }
 
 const Page3: React.FC<Props> = props => {
+  const clickRef = useRef(null);
   const [isArrowVisible, setArrowVisible] = useState(false);
   const onClickHandler = () => {
     setArrowVisible(true);
-    setTimeout(() => props.setDownVisible(true), 2100);
+    // @ts-ignore
+    clickRef.current.setDone(true);
+    // @ts-ignore
+    clickRef.current.setMark(true);
+    setTimeout(() => props.setDownVisible(true), 2900);
   };
+  useEffect(() => {
+    if (props.isPage3Visited) setTimeout(() => {
+      // @ts-ignore
+      if (!clickRef.current.done) clickRef.current.setDone(false);
+    }, 2600);
+  }, [props.isPage3Visited]);
   return (
     <Page3Wrapper className="page">
       <p className={`text1`}>国的茶叶分类上，依据品种及加工工艺的不同一般将其归为六大类：绿茶、红茶、白茶、青茶、黄茶、黑茶。其中青茶又叫乌龙茶。</p>
       <p className={`text2 ${props.isPage3Visited ? 'visible' : ''}`}>
-        这些茶类依据发酵程度又可再分类：不发酵茶（绿茶）、轻发酵茶（黄茶、白茶）、半发酵茶（青茶）、全发酵茶（红茶）、后发酵茶（黑茶）.</p>
+        这些茶类依据发酵程度又可再分类：不发酵茶（绿茶）、轻发酵茶（黄茶、白茶）、半发酵茶（青茶）、全发酵茶（红茶）、后发酵茶（黑茶）。</p>
       <p className={`text3 ${props.isPage3Visited ? 'visible' : ''} ${isArrowVisible ? 'done' : ''}`}
          onClick={onClickHandler}>发酵程度</p>
+      <Click ref={clickRef}/>
       <p className={`text4`}>
         <span>绿茶</span><span>白茶</span><span>黄茶</span><span>青茶</span><span>红茶</span><span>黑茶</span>
       </p>

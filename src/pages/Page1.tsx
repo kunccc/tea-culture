@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import styled from 'styled-components';
 import Click from '../components/Click';
 
@@ -16,28 +16,18 @@ const Page1Wrapper = styled.div`
       &.inVisible {
         cursor: pointer;
       }
-      @keyframes show {
-        from {
-          transform: translateX(-100px);
-        }
-        to {
-          opacity: 1;
-          transform: translateX(0);
-        }
-      }
     }
     .click {
       position: absolute;
       top: 190px;
       left: 170px;
-      opacity: 0;
     }
   }
   .leaf1 {
     width: 74px;
     opacity: 0;
     transform: translate(-62px, -121px);
-    transition: all .8s;
+    transition: all .8s .8s;
     &.visible {
       opacity: 1;
     }
@@ -54,7 +44,7 @@ const Page1Wrapper = styled.div`
       &.text2 {
         opacity: 0;
         &.visible {
-          animation: arise 1s 1s both;
+          animation: arise 1s 1.8s both;
         }
       }
     }
@@ -64,7 +54,7 @@ const Page1Wrapper = styled.div`
     flex-direction: column;
     opacity: 0;
     transform: translateX(100px);
-    transition: all 1s 2s;
+    transition: all 1s 2.8s;
     &.visible {
       transform: translateX(0);
       cursor: pointer;
@@ -77,13 +67,27 @@ const Page1Wrapper = styled.div`
       width: 76.8px;
       margin-bottom: 4px;
       transform: translateX(44px);
-      transition: all .4s ease;
+      transition: all .4s .8s ease;
       &.off {
         transform: translate(55px, 26px) rotate(25.8deg)
       }
     }
     .potBody {
       width: 172.8px;
+    }
+    .click {
+      position: absolute;
+      top: 100px;
+      left: 170px;
+    }
+  }
+  @keyframes show {
+    from {
+      transform: translateX(-100px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
     }
   }
   @keyframes arise {
@@ -108,9 +112,12 @@ const Page1Wrapper = styled.div`
 
 interface Props {
   setDownVisible: (key: boolean) => void;
+  isPage1Visited: boolean
 }
 
 const Page1: React.FC<Props> = props => {
+  const click1Ref = useRef(null);
+  const click2Ref = useRef(null);
   const [isLeafVisible, setLeafVisible] = useState(false);
   const [isTextVisible, setTextVisible] = useState(false);
   const [isPotVisible, setPotVisible] = useState(false);
@@ -119,18 +126,36 @@ const Page1: React.FC<Props> = props => {
     setLeafVisible(true);
     setTextVisible(true);
     setPotVisible(true);
+    // @ts-ignore
+    click1Ref.current.setDone(true);
+    // @ts-ignore
+    click1Ref.current.setMark(true);
+    setTimeout(() => {
+      // @ts-ignore
+      if (!click2Ref.current.mark) click2Ref.current.setDone(false);
+    }, 4000);
   };
   const off = () => {
     setOff(true);
-    setTimeout(() => props.setDownVisible(true), 800);
+    // @ts-ignore
+    click2Ref.current.setDone(true);
+    // @ts-ignore
+    click2Ref.current.setMark(true);
+    setTimeout(() => props.setDownVisible(true), 1600);
   };
+  useEffect(() => {
+    setTimeout(() => {
+      // @ts-ignore
+      if (!click1Ref.current.mark) click1Ref.current.setDone(false);
+    }, 4000);
+  }, []);
   return (
     <Page1Wrapper className="page">
       <div className="man">
         <img src="/src/images/people.png" alt="" className={`people ${isLeafVisible ? '' : 'inVisible'}`}
              onClick={showLeaf}/>
         <img src="/src/images/leaf1.png" alt="" className={`leaf1 ${isLeafVisible ? 'visible' : ''}`}/>
-        <Click/>
+        <Click ref={click1Ref}/>
       </div>
       <div className="text">
         <p className="text1">
@@ -143,6 +168,7 @@ const Page1: React.FC<Props> = props => {
       <div className={`pot ${isPotVisible ? 'visible' : ''} ${isOff ? 'off' : ''}`} onClick={off}>
         <img src="/src/images/lid.png" alt="" className={`lid ${isOff ? 'off' : ''}`}/>
         <img src="/src/images/pot.png" alt="" className="potBody"/>
+        <Click ref={click2Ref}/>
       </div>
     </Page1Wrapper>
   );

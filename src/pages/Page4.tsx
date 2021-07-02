@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import styled from 'styled-components';
+import Click from '../components/Click';
 
 const Page4Wrapper = styled.div`
   display: flex;
@@ -22,7 +23,7 @@ const Page4Wrapper = styled.div`
     .text2 {
       opacity: 0;
       &.visible {
-        animation: arise .8s 2.5s ease both;
+        animation: arise .8s 3.3s ease both;
       }
     }
     .step {
@@ -54,6 +55,7 @@ const Page4Wrapper = styled.div`
       width: 60px;
     }
     .top {
+      position: relative;
       .cup {
         &.visible {
           opacity: 0;
@@ -61,36 +63,47 @@ const Page4Wrapper = styled.div`
         }
       }
       .add1 {
-        transition: opacity .8s ease;
+        transition: opacity .8s .8s ease;
       }
       .water {
-        transition: opacity .8s .5s ease;
+        transition: opacity .8s 1.3s ease;
       }
       .add2 {
-        transition: opacity .8s 1s ease;
+        transition: opacity .8s 1.8s ease;
       }
       .leaf {
-        transition: opacity .8s 1.5s ease;
+        transition: opacity .8s 2.3s ease;
+      }
+      .click {
+        position: absolute;
+        top: 130px;
+        left: 90px;
       }
     }
     .bottom {
+      position: relative;
       .cup {
         &.visible {
           opacity: 0;
-          animation: arise .8s 3.3s ease both;
+          animation: arise .8s 4.1s ease both;
         }
       }
       .add1 {
-        transition: opacity .8s ease;
+        transition: opacity .8s .8s ease;
       }
       .leaf {
-        transition: opacity .8s .5s ease;
+        transition: opacity .8s 1.3s ease;
       }
       .add2 {
-        transition: opacity .8s 1s ease;
+        transition: opacity .8s 1.8s ease;
       }
       .water {
-        transition: opacity .8s 1.5s ease;
+        transition: opacity .8s 2.3s ease;
+      }
+      .click {
+        position: absolute;
+        top: 130px;
+        left: 90px;
       }
     }
   }
@@ -111,12 +124,35 @@ interface Props {
 }
 
 const Page4: React.FC<Props> = props => {
+  const click1Ref = useRef(null);
+  const click2Ref = useRef(null);
   const [isStep1Visible, setStep1Visible] = useState(false);
   const [isStep2Visible, setStep2Visible] = useState(false);
-  const onClickHandler = () => {
-    setStep2Visible(true);
-    setTimeout(() => props.setDownVisible(true), 2300);
+  const onClickHandler1 = () => {
+    setStep1Visible(true);
+    // @ts-ignore
+    click1Ref.current.setDone(true);
+    // @ts-ignore
+    click1Ref.current.setMark(true);
+    setTimeout(() => {
+      // @ts-ignore
+      if (!click2Ref.current.mark) click2Ref.current.setDone(false);
+    }, 5100);
   };
+  const onClickHandler2 = () => {
+    setStep2Visible(true);
+    // @ts-ignore
+    click2Ref.current.setDone(true);
+    // @ts-ignore
+    click2Ref.current.setMark(true);
+    setTimeout(() => props.setDownVisible(true), 3100);
+  };
+  useEffect(() => {
+    if (props.isPage4Visited) setTimeout(() => {
+      // @ts-ignore
+      if (!click1Ref.current.mark) click1Ref.current.setDone(false);
+    }, 2600);
+  }, [props.isPage4Visited]);
   return (
     <Page4Wrapper className="page">
       <p className="title">绿茶是不发酵茶，冲泡绿茶时水温应控制在75℃~85℃，投茶则有上、中、下投法。</p>
@@ -126,11 +162,12 @@ const Page4: React.FC<Props> = props => {
           <div className="step">
             <img src="/src/images/cup.png" alt=""
                  className={`cup ${props.isPage4Visited ? 'visible' : ''} ${isStep1Visible ? 'done' : ''}`}
-                 onClick={() => setStep1Visible(true)}/>
+                 onClick={onClickHandler1}/>
             <img src="/src/images/add.png" alt="" className={`add1 ${isStep1Visible ? 'visible' : ''}`}/>
             <img src="/src/images/water.png" alt="" className={`water ${isStep1Visible ? 'visible' : ''}`}/>
             <img src="/src/images/add.png" alt="" className={`add2 ${isStep1Visible ? 'visible' : ''}`}/>
             <img src="/src/images/leaf2.png" alt="" className={`leaf ${isStep1Visible ? 'visible' : ''}`}/>
+            <Click ref={click1Ref}/>
           </div>
         </div>
         <div className="bottom">
@@ -138,11 +175,12 @@ const Page4: React.FC<Props> = props => {
           <div className="step">
             <img src="/src/images/cup.png" alt=""
                  className={`cup ${isStep1Visible ? 'visible' : ''} ${isStep2Visible ? 'done' : ''}`}
-                 onClick={onClickHandler}/>
+                 onClick={onClickHandler2}/>
             <img src="/src/images/add.png" alt="" className={`add1 ${isStep2Visible ? 'visible' : ''}`}/>
             <img src="/src/images/leaf2.png" alt="" className={`leaf ${isStep2Visible ? 'visible' : ''}`}/>
             <img src="/src/images/add.png" alt="" className={`add2 ${isStep2Visible ? 'visible' : ''}`}/>
             <img src="/src/images/water.png" alt="" className={`water ${isStep2Visible ? 'visible' : ''}`}/>
+            <Click ref={click2Ref}/>
           </div>
         </div>
       </div>

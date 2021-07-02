@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import styled from 'styled-components';
+import Click from '../components/Click';
 
 const Page2Wrapper = styled.div`
   position: relative;
@@ -50,7 +51,7 @@ const Page2Wrapper = styled.div`
       top: 433px;
       left: 50%;
       transform: translateX(-50%);
-      transition: all .4s ease-out;
+      transition: all .4s .8s ease-out;
       z-index: -1;
       &.visible {
         z-index: 1;
@@ -58,6 +59,11 @@ const Page2Wrapper = styled.div`
         transform: translateX(-50%) scale(.55);
       }
     }
+  }
+  .click {
+    position: absolute;
+    top: 550px;
+    left: 800px;
   }
   @keyframes arise {
     from {
@@ -76,11 +82,22 @@ interface Props {
 }
 
 const Page2: React.FC<Props> = props => {
+  const clickRef = useRef(null);
   const [isBanVisible, setBanVisible] = useState(false);
   const onClickHandler = () => {
     setBanVisible(true);
-    setTimeout(() => props.setDownVisible(true), 800);
+    // @ts-ignore
+    clickRef.current.setDone(true);
+    // @ts-ignore
+    clickRef.current.setMark(true);
+    setTimeout(() => props.setDownVisible(true), 1600);
   };
+  useEffect(() => {
+    if (props.isPage2Visited) setTimeout(() => {
+      // @ts-ignore
+      if (!clickRef.current.mark) clickRef.current.setDone(false);
+    }, 4400);
+  }, [props.isPage2Visited]);
   return (
     <Page2Wrapper className="page">
       <p className={`text1`}>
@@ -99,6 +116,7 @@ const Page2: React.FC<Props> = props => {
            className={`tree ${props.isPage2Visited ? 'visible' : ''}`}
            onClick={onClickHandler}/>
       <img src="/src/images/ban.png" alt="" className={`ban ${isBanVisible ? 'visible' : ''}`}/>
+      <Click ref={clickRef}/>
     </Page2Wrapper>
   );
 };
