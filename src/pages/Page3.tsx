@@ -29,12 +29,6 @@ const Page3Wrapper = styled.div`
       cursor: default;
     }
   }
-  .click {
-    position: absolute;
-    top: 380px;
-    left: 830px;
-    z-index: 2;
-  }
   .text4 {
     margin-bottom: 6px;
     span {
@@ -72,7 +66,16 @@ const Page3Wrapper = styled.div`
     background: #486e88;
     transition: all 2s .8s ease;
     &.visible {
-      transform: translate(20vw);
+      transform: translate(25vw);
+    }
+  }
+  .wrapper {
+    position: relative;
+    .click {
+      position: absolute;
+      top: 10px;
+      left: 56%;
+      z-index: 2;
     }
   }
   @keyframes arise {
@@ -110,12 +113,14 @@ const Page3: React.FC<Props> = props => {
   }, [props.isPage3Visited]);
   return (
     <Page3Wrapper className="page">
-      <p className={`text1`}>国的茶叶分类上，依据品种及加工工艺的不同一般将其归为六大类：绿茶、红茶、白茶、青茶、黄茶、黑茶。其中青茶又叫乌龙茶。</p>
+      <p className={`text1`}>我国的茶叶分类上，依据品种及加工工艺的不同一般将其归为六大类：绿茶、红茶、白茶、青茶、黄茶、黑茶。其中青茶又叫乌龙茶。</p>
       <p className={`text2 ${props.isPage3Visited ? 'visible' : ''}`}>
         这些茶类依据发酵程度又可再分类：不发酵茶（绿茶）、轻发酵茶（黄茶、白茶）、半发酵茶（青茶）、全发酵茶（红茶）、后发酵茶（黑茶）。</p>
-      <p className={`text3 ${props.isPage3Visited ? 'visible' : ''} ${isArrowVisible ? 'done' : ''}`}
-         onClick={onClickHandler}>发酵程度</p>
-      <Click ref={clickRef}/>
+      <div className="wrapper">
+        <p className={`text3 ${props.isPage3Visited ? 'visible' : ''} ${isArrowVisible ? 'done' : ''}`}
+           onClick={onClickHandler}>发酵程度</p>
+        <Click ref={clickRef}/>
+      </div>
       <p className={`text4`}>
         <span>绿茶</span><span>白茶</span><span>黄茶</span><span>青茶</span><span>红茶</span><span>黑茶</span>
       </p>

@@ -155,7 +155,7 @@ const Page4: React.FC<Props> = props => {
   }, [props.isPage4Visited]);
   return (
     <Page4Wrapper className="page">
-      <p className="title">绿茶是不发酵茶，冲泡绿茶时水温应控制在75℃~85℃，投茶则有上、中、下投法。</p>
+      <p className="title">绿茶是不发酵茶，冲泡绿茶时水温应控制在75℃~85℃，投茶时有上、中、下投法。</p>
       <div className="wrapper">
         <div className="top">
           <p className={`text1 ${props.isPage4Visited ? 'visible' : ''}`}>上投法即先投水后投茶，多用于比较细嫩的绿茶。</p>

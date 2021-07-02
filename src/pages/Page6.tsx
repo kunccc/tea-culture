@@ -31,7 +31,7 @@ const Page4Wrapper = styled.div`
     .click {
       position: absolute;
       bottom: -20px;
-      right: 410px;
+      right: 34%;
     }
   }
   .text1 {

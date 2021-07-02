@@ -10,7 +10,6 @@ import Next from './Next';
 import Back from './Back';
 
 const MainWrapper = styled.div`
-  opacity: 0;
   width: 100vw;
   height: 100vh;
   scroll-snap-type: y mandatory;
@@ -25,9 +24,6 @@ const MainWrapper = styled.div`
     &:first-child {
       padding: 100px 200px;
     }
-  }
-  &.visible {
-    opacity: 1;
   }
 `;
 
@@ -65,8 +61,8 @@ const Main: React.FC<Props> = props => {
     setPageMap[currentPage - 1](true);
   }, [currentPage]);
   return (
-    <MainWrapper className={props.isStart ? 'visible' : ''} ref={main}>
-      <Page1 setDownVisible={setNextVisible} isPage1Visited={isPage1Visited}/>
+    <MainWrapper ref={main}>
+      <Page1 setDownVisible={setNextVisible} isPage1Visited={isPage1Visited} isStart={props.isStart}/>
       <Page2 setDownVisible={setNextVisible} isPage2Visited={isPage2Visited}/>
       <Page3 setDownVisible={setNextVisible} isPage3Visited={isPage3Visited}/>
       <Page4 setDownVisible={setNextVisible} isPage4Visited={isPage4Visited}/>

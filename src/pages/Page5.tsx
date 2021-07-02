@@ -11,7 +11,7 @@ const Page3Wrapper = styled.div`
     .bowl {
       opacity: 0;
       transform: translate(-28px, 70px) scale(1.15);
-      transition: all .8s 3.6s ease;
+      transition: all .8s 3.9s ease;
       &.visible {
         opacity: 1;
         transform: translate(-28px, 20px) scale(1.15);
@@ -28,7 +28,7 @@ const Page3Wrapper = styled.div`
         margin-bottom: 100px;
         opacity: 0;
         &.visible {
-          animation: arise .8s 2.6s ease both;
+          animation: arise .8s 2.9s ease both;
         }
       }
       &.number {
@@ -36,7 +36,7 @@ const Page3Wrapper = styled.div`
         margin: 0;
         opacity: 0;
         transform: scale(1.2);
-        transition: all .8s 1.6s ease;
+        transition: all .8s 1.9s ease;
         &.visible {
           transform: scale(1);
           opacity: 1;

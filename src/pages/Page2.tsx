@@ -48,7 +48,7 @@ const Page2Wrapper = styled.div`
     &.ban {
       width: 200px;
       position: absolute;
-      top: 433px;
+      top: -53px;
       left: 50%;
       transform: translateX(-50%);
       transition: all .4s .8s ease-out;
@@ -60,10 +60,13 @@ const Page2Wrapper = styled.div`
       }
     }
   }
-  .click {
-    position: absolute;
-    top: 550px;
-    left: 800px;
+  .wrapper {
+    position: relative;
+    .click {
+      position: absolute;
+      top: 60px;
+      left: 54%;
+    }
   }
   @keyframes arise {
     from {
@@ -112,11 +115,13 @@ const Page2: React.FC<Props> = props => {
       <p className={`text2 ${props.isPage2Visited ? 'visible' : ''}`}>
         茶树属四季常青而隔年交替落叶的植物，因此，合理做好鲜叶的采摘与留养，是持续长久确保茶树生长茂盛和优质丰产丰收的关键。<br/>“掠夺式”的采摘或过盛的留叶均不利于茶叶生产与发展。
       </p>
-      <img src="/src/images/tree.png" alt=""
-           className={`tree ${props.isPage2Visited ? 'visible' : ''}`}
-           onClick={onClickHandler}/>
-      <img src="/src/images/ban.png" alt="" className={`ban ${isBanVisible ? 'visible' : ''}`}/>
-      <Click ref={clickRef}/>
+      <div className="wrapper">
+        <img src="/src/images/tree.png" alt=""
+             className={`tree ${props.isPage2Visited ? 'visible' : ''}`}
+             onClick={onClickHandler}/>
+        <img src="/src/images/ban.png" alt="" className={`ban ${isBanVisible ? 'visible' : ''}`}/>
+        <Click ref={clickRef}/>
+      </div>
     </Page2Wrapper>
   );
 };
