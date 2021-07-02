@@ -1,5 +1,6 @@
 {
   "version": "0.0.0",
+  "homepage": "https://kunccc.github.io/tea-culture-website/",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
