@@ -1,9 +1,11 @@
 import React, {useEffect, useRef, useState} from 'react';
 import styled from 'styled-components';
 import Page1 from '../pages/Page1';
+import Page2 from '../pages/Page2';
 import Page3 from '../pages/Page3';
 import Page4 from '../pages/Page4';
-import Page2 from '../pages/Page2';
+import Page5 from '../pages/Page5';
+import Page6 from '../pages/Page6';
 import Next from './Next';
 import Back from './Back';
 
@@ -42,8 +44,10 @@ const Main: React.FC<Props> = props => {
   const [isPage2Visited, setPage2Visited] = useState(false);
   const [isPage3Visited, setPage3Visited] = useState(false);
   const [isPage4Visited, setPage4Visited] = useState(false);
-  const pageMap = [isPage1Visited, isPage2Visited, isPage3Visited, isPage4Visited];
-  const setPageMap = [setPage1Visited, setPage2Visited, setPage3Visited, setPage4Visited];
+  const [isPage5Visited, setPage5Visited] = useState(false);
+  const [isPage6Visited, setPage6Visited] = useState(false);
+  const pageMap = [isPage1Visited, isPage2Visited, isPage3Visited, isPage4Visited, isPage6Visited, isPage6Visited];
+  const setPageMap = [setPage1Visited, setPage2Visited, setPage3Visited, setPage4Visited, setPage5Visited, setPage6Visited];
   const height = document.documentElement.clientHeight;
   const back = () => {
     if (currentPage === 2) setBackVisible(false);
@@ -53,7 +57,7 @@ const Main: React.FC<Props> = props => {
   };
   const next = () => {
     main.current!.scrollTo({top: height * currentPage, behavior: 'smooth'});
-    if (!pageMap[currentPage] || currentPage === 3) setNextVisible(false);
+    if (!pageMap[currentPage] || currentPage === 5) setNextVisible(false);
     setCurrentPage(n => n + 1);
     setBackVisible(true);
   };
@@ -66,6 +70,8 @@ const Main: React.FC<Props> = props => {
       <Page2 setDownVisible={setNextVisible} isPage2Visited={isPage2Visited}/>
       <Page3 setDownVisible={setNextVisible} isPage3Visited={isPage3Visited}/>
       <Page4 setDownVisible={setNextVisible} isPage4Visited={isPage4Visited}/>
+      <Page5 setDownVisible={setNextVisible} isPage5Visited={isPage5Visited}/>
+      <Page6 setDownVisible={setNextVisible} isPage6Visited={isPage6Visited}/>
       <Back isBackVisible={isBackVisible} back={back}/>
       <Next isNextVisible={isNextVisible} next={next}/>
     </MainWrapper>

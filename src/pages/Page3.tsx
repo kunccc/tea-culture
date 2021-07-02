@@ -2,74 +2,72 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 
 const Page3Wrapper = styled.div`
-  display: flex;
-  justify-content: space-around;
-  .wrapper {
-    padding: 100px 0;
-    text-align: center;
-    .bowl {
-      opacity: 0;
-      transform: translate(-28px, 70px) scale(1.15);
-      transition: all .8s 3.6s ease;
-      &.visible {
-        opacity: 1;
-        transform: translate(-28px, 20px) scale(1.15);
-      }
+  text-align: center;
+  position: relative;
+  .text1 {
+    margin-top: 110px;
+  }
+  .text2 {
+    opacity: 0;
+    &.visible {
+      animation: arise .8s .8s ease both;
     }
-    p {
-      margin-bottom: 90px;
-      &.text2 {
-        margin-bottom: 100px;
-        opacity: 0;
-        &.visible {
-          animation: arise .8s 2.6s ease both;
-        }
-      }
-      &.number {
-        font-size: 40px;
+  }
+  .text3 {
+    font-size: 22px;
+    text-decoration: underline;
+    margin: 80px 0 40px;
+    opacity: 0;
+    transition: opacity .4s 1.8s ease;
+    z-index: -1;
+    &.visible {
+      opacity: 1;
+      z-index: 1;
+      cursor: pointer;
+    }
+    &.done {
+      cursor: default;
+      text-decoration: none;
+    }
+  }
+  .text4 {
+    margin-bottom: 6px;
+    span {
+      margin-right: 46px;
+      &:last-child {
         margin: 0;
-        opacity: 0;
-        transform: scale(1.2);
-        transition: all .8s 1.6s ease;
-        &.visible {
-          transform: scale(1);
-          opacity: 1;
-        }
       }
     }
-    img {
-      width: 70px;
-      &.leaf2 {
-        opacity: 0;
-        margin-right: 50px;
-        &.visible {
-          animation: arise .8s .8s ease both;
-        }
+  }
+  .text5 {
+    margin-top: 4px;
+    opacity: 0;
+    transition: opacity .8s 1.3s ease;
+    &.visible {
+      opacity: 1;
+    }
+    span {
+      margin-right: 430px;
+      &:last-child {
+        margin: 0;
       }
-      &.water {
-        opacity: 0;
-        width: 62px;
-        &.visible {
-          animation: arise .8s 1.1s ease both;
-        }
-      }
-      &.bowl_cap {
-        width: 64px;
-        transition: all .4s;
-        cursor: pointer;
-        &.visible {
-          cursor: none;
-          transform: rotate(58.5deg) translate(14px, -88px);
-        }
-      }
-      &.bowl_body {
-        width: 125px;
-        transform: translateX(-11px);
-        cursor: pointer;
-        &.visible {
-          cursor: default;
-        }
-      }
+    }
+  }
+  img {
+    width: 500px;
+    height: 25px;
+  }
+  .mask {
+    position: absolute;
+    top: 420px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 520px;
+    height: 100px;
+    background: #486e88;
+    transition: all 2s ease;
+    &.visible {
+      transform: translate(20vw);
     }
   }
   @keyframes arise {
@@ -89,36 +87,24 @@ interface Props {
 }
 
 const Page3: React.FC<Props> = props => {
-  const [bowlClose, setBowlClose] = useState(false);
+  const [isArrowVisible, setArrowVisible] = useState(false);
   const onClickHandler = () => {
-    setBowlClose(true);
-    setTimeout(() => props.setDownVisible(true), 800);
+    setArrowVisible(true);
+    setTimeout(() => props.setDownVisible(true), 2100);
   };
   return (
     <Page3Wrapper className="page">
-      <div className="wrapper">
-        <p className="text1">
-          红茶是全发酵茶，冲泡红茶最好用刚煮沸的水，投茶的茶水比一般为 1:50。
-        </p>
-        <div className="item">
-          <img src="/src/images/leaf2.png" alt=""
-               className={`leaf2 ${props.isPage3Visited ? 'visible' : ''}`}/>
-          <img src="/src/images/water.png" alt=""
-               className={`water ${props.isPage3Visited ? 'visible' : ''}`}/>
-          <p
-            className={`number ${props.isPage3Visited ? 'visible' : ''}`}>1&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;50</p>
-        </div>
-      </div>
-      <div className="wrapper">
-        <p className={`text2 ${props.isPage3Visited ? 'visible' : ''}`}>
-          为了能够泡茶红茶原味的口感与富有层次感的滋味，最好选用盖碗来冲泡。
-        </p>
-        <div className={`bowl ${props.isPage3Visited ? 'visible' : ''}`}
-             onClick={onClickHandler}>
-          <img src="/src/images/bowl-cap.png" alt="" className={`bowl_cap ${bowlClose ? 'visible' : ''}`}/>
-          <img src="/src/images/bowl-body.png" alt="" className={`bowl_body ${bowlClose ? 'visible' : ''}`}/>
-        </div>
-      </div>
+      <p className={`text1`}>国的茶叶分类上，依据品种及加工工艺的不同一般将其归为六大类：绿茶、红茶、白茶、青茶、黄茶、黑茶。其中青茶又叫乌龙茶。</p>
+      <p className={`text2 ${props.isPage3Visited ? 'visible' : ''}`}>
+        这些茶类依据发酵程度又可再分类：不发酵茶（绿茶）、轻发酵茶（黄茶、白茶）、半发酵茶（青茶）、全发酵茶（红茶）、后发酵茶（黑茶）.</p>
+      <p className={`text3 ${props.isPage3Visited ? 'visible' : ''} ${isArrowVisible ? 'done' : ''}`}
+         onClick={onClickHandler}>发酵程度</p>
+      <p className={`text4`}>
+        <span>绿茶</span><span>白茶</span><span>黄茶</span><span>青茶</span><span>红茶</span><span>黑茶</span>
+      </p>
+      <img src="/src/images/arrow.png" alt=""/>
+      <p className={`text5 ${isArrowVisible ? 'visible' : ''}`}><span>0%</span><span>100%</span></p>
+      <div className={`mask ${isArrowVisible ? 'visible' : ''}`}/>
     </Page3Wrapper>
   );
 };

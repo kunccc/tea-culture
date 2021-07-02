@@ -2,55 +2,101 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 
 const Page4Wrapper = styled.div`
-  text-align: center;
-  .img {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 180px 200px !important;
+  .title {
+    margin-bottom: 80px;
+  }
+  .wrapper {
+    width: 100%;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 60px;
-    .heart {
-      width: 50px;
+    justify-content: space-around;
+    .text1 {
       opacity: 0;
       &.visible {
-        animation: heartArise .8s ease both;
+        animation: arise .8s .8s ease both;
       }
     }
-    .marry {
-      width: 250px;
+    .text2 {
       opacity: 0;
       &.visible {
-        cursor: pointer;
-        animation: arise .8s 1.8s ease both;
+        animation: arise .8s 2.5s ease both;
       }
-      &.heartVisible {
+    }
+    .step {
+      display: flex;
+      align-items: center;
+      margin-top: 40px;
+    }
+    img {
+      margin-right: 26px;
+      opacity: 0;
+      &.visible {
+        opacity: 1;
+      }
+    }
+    .add1, .add2 {
+      width: 25px;
+    }
+    .cup {
+      width: 90px;
+      cursor: pointer;
+      &.done {
         cursor: default;
       }
     }
-  }
-  .text1 {
-    opacity: 0;
-    &.visible {
-      animation: arise .8s .8s ease both;
+    .water {
+      width: 55px;
     }
-  }
-  .text2 {
-    opacity: 0;
-    &.visible {
-      animation: arise .8s 1s ease both;
+    .leaf {
+      width: 60px;
+    }
+    .top {
+      .cup {
+        &.visible {
+          opacity: 0;
+          animation: arise .8s 1.6s ease both;
+        }
+      }
+      .add1 {
+        transition: opacity .8s ease;
+      }
+      .water {
+        transition: opacity .8s .5s ease;
+      }
+      .add2 {
+        transition: opacity .8s 1s ease;
+      }
+      .leaf {
+        transition: opacity .8s 1.5s ease;
+      }
+    }
+    .bottom {
+      .cup {
+        &.visible {
+          opacity: 0;
+          animation: arise .8s 3.3s ease both;
+        }
+      }
+      .add1 {
+        transition: opacity .8s ease;
+      }
+      .leaf {
+        transition: opacity .8s .5s ease;
+      }
+      .add2 {
+        transition: opacity .8s 1s ease;
+      }
+      .water {
+        transition: opacity .8s 1.5s ease;
+      }
     }
   }
   @keyframes arise {
     from {
       transform: translateY(50px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  @keyframes heartArise {
-    from {
-      transform: translateY(20px);
     }
     to {
       opacity: 1;
@@ -65,21 +111,41 @@ interface Props {
 }
 
 const Page4: React.FC<Props> = props => {
-  const [heartVisible, setHeartVisible] = useState(false);
-  const onCLickHandler = () => {
-    setHeartVisible(true);
+  const [isStep1Visible, setStep1Visible] = useState(false);
+  const [isStep2Visible, setStep2Visible] = useState(false);
+  const onClickHandler = () => {
+    setStep2Visible(true);
+    setTimeout(() => props.setDownVisible(true), 2300);
   };
   return (
     <Page4Wrapper className="page">
-      <p>在婚礼中，茶经常被作为礼仪的一部分用于迎亲或结婚仪式中。有新郎、新娘的“交杯茶”、“和合茶”，或向父母尊长敬献的“谢恩茶”、“认亲茶”等仪式。</p>
-      <p
-        className={`text1 ${props.isPage4Visited ? 'visible' : ''}`}>总之，从古到今，我国的许多地方，在缔婚的每一个过程中，往往都离不开茶来作礼仪。</p>
-      <div className="img" onClick={onCLickHandler}>
-        <img src="/src/images/heart.png" alt="" className={`heart ${heartVisible ? 'visible' : ''}`}/>
-        <img src="/src/images/marry.png" alt=""
-             className={`marry ${props.isPage4Visited ? 'visible' : ''} ${heartVisible ? 'heartVisible' : ''}`}/>
+      <p className="title">绿茶是不发酵茶，冲泡绿茶时水温应控制在75℃~85℃，投茶则有上、中、下投法。</p>
+      <div className="wrapper">
+        <div className="top">
+          <p className={`text1 ${props.isPage4Visited ? 'visible' : ''}`}>上投法即先投水后投茶，多用于比较细嫩的绿茶。</p>
+          <div className="step">
+            <img src="/src/images/cup.png" alt=""
+                 className={`cup ${props.isPage4Visited ? 'visible' : ''} ${isStep1Visible ? 'done' : ''}`}
+                 onClick={() => setStep1Visible(true)}/>
+            <img src="/src/images/add.png" alt="" className={`add1 ${isStep1Visible ? 'visible' : ''}`}/>
+            <img src="/src/images/water.png" alt="" className={`water ${isStep1Visible ? 'visible' : ''}`}/>
+            <img src="/src/images/add.png" alt="" className={`add2 ${isStep1Visible ? 'visible' : ''}`}/>
+            <img src="/src/images/leaf2.png" alt="" className={`leaf ${isStep1Visible ? 'visible' : ''}`}/>
+          </div>
+        </div>
+        <div className="bottom">
+          <p className={`text2 ${isStep1Visible ? 'visible' : ''}`}>下投法即先投茶后投水，多用于质量一般的绿茶。</p>
+          <div className="step">
+            <img src="/src/images/cup.png" alt=""
+                 className={`cup ${isStep1Visible ? 'visible' : ''} ${isStep2Visible ? 'done' : ''}`}
+                 onClick={onClickHandler}/>
+            <img src="/src/images/add.png" alt="" className={`add1 ${isStep2Visible ? 'visible' : ''}`}/>
+            <img src="/src/images/leaf2.png" alt="" className={`leaf ${isStep2Visible ? 'visible' : ''}`}/>
+            <img src="/src/images/add.png" alt="" className={`add2 ${isStep2Visible ? 'visible' : ''}`}/>
+            <img src="/src/images/water.png" alt="" className={`water ${isStep2Visible ? 'visible' : ''}`}/>
+          </div>
+        </div>
       </div>
-      <p className={`text2 ${heartVisible ? 'visible' : ''}`}>除此之外以茶待客、以茶会友、以茶联谊也是古代沿袭下来的饮茶习俗。</p>
     </Page4Wrapper>
   );
 };
