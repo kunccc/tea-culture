@@ -124,7 +124,7 @@ const Page3: React.FC<Props> = props => {
       <p className={`text4`}>
         <span>绿茶</span><span>白茶</span><span>黄茶</span><span>青茶</span><span>红茶</span><span>黑茶</span>
       </p>
-      <img src="/src/images/arrow.png" alt=""/>
+      <img src="../images/arrow.png" alt=""/>
       <p className={`text5 ${isArrowVisible ? 'visible' : ''}`}><span>0%</span><span>100%</span></p>
       <div className={`mask ${isArrowVisible ? 'visible' : ''}`}/>
     </Page3Wrapper>

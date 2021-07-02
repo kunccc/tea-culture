@@ -93,8 +93,8 @@ const Page6: React.FC<Props> = props => {
       <p
         className={`text1 ${props.isPage6Visited ? 'visible' : ''}`}>总之，从古到今，我国的许多地方，在缔婚的每一个过程中，往往都离不开茶来作礼仪。</p>
       <div className="img" onClick={onCLickHandler}>
-        <img src="/src/images/heart.png" alt="" className={`heart ${heartVisible ? 'visible' : ''}`}/>
-        <img src="/src/images/marry.png" alt=""
+        <img src="../images/heart.png" alt="" className={`heart ${heartVisible ? 'visible' : ''}`}/>
+        <img src="../images/marry.png" alt=""
              className={`marry ${props.isPage6Visited ? 'visible' : ''} ${heartVisible ? 'heartVisible' : ''}`}/>
         <Click ref={clickRef}/>
       </div>

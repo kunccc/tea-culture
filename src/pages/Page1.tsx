@@ -158,10 +158,10 @@ const Page1: React.FC<Props> = props => {
   return (
     <Page1Wrapper className="page">
       <div className="man">
-        <img src="/src/images/people.png" alt=""
+        <img src="../images/people.png" alt=""
              className={`people ${props.isStart ? 'visible' : ''} ${isLeafVisible ? '' : 'inVisible'}`}
              onClick={showLeaf}/>
-        <img src="/src/images/leaf1.png" alt="" className={`leaf1 ${isLeafVisible ? 'visible' : ''}`}/>
+        <img src="../images/leaf1.png" alt="" className={`leaf1 ${isLeafVisible ? 'visible' : ''}`}/>
         <Click ref={click1Ref}/>
       </div>
       <div className="text">
@@ -173,8 +173,8 @@ const Page1: React.FC<Props> = props => {
         </p>
       </div>
       <div className={`pot ${isPotVisible ? 'visible' : ''} ${isOff ? 'off' : ''}`} onClick={off}>
-        <img src="/src/images/lid.png" alt="" className={`lid ${isOff ? 'off' : ''}`}/>
-        <img src="/src/images/pot.png" alt="" className="potBody"/>
+        <img src="../images/lid.png" alt="" className={`lid ${isOff ? 'off' : ''}`}/>
+        <img src="../images/pot.png" alt="" className="potBody"/>
         <Click ref={click2Ref}/>
       </div>
     </Page1Wrapper>
